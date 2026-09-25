@@ -3,6 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const activitySelect = document.getElementById("activity");
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
+  const escapeHtml = (value) =>
+    String(value).replace(/[&<>"']/g, (char) => {
+      const entities = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      };
+      return entities[char];
+    });
 
   // Function to fetch activities from API
   async function fetchActivities() {
@@ -25,8 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
           details.participants.length > 0
             ? `<ul class="participants-list">${details.participants
                 .map(
-                  (email) =>
-                    `<li><span class="participant-email">${email}</span><span class="delete-participant" data-activity="${name}" data-email="${email}" title="Unregister">🗑️</span></li>`
+                  (email) => {
+                    const escapedEmail = escapeHtml(email);
+                    return `<li><span class="participant-email">${escapedEmail}</span><span class="delete-participant" data-activity="${name}" data-email="${escapedEmail}" title="Unregister">🗑️</span></li>`;
+                  }
                 )
                 .join("")}</ul>`
             : `<p class="no-participants">No participants yet</p>`;
