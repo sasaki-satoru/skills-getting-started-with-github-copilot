@@ -51,6 +51,12 @@ activities = {
         "max_participants": 25,
         "participants": []
     },
+    "Volleyball Club": {
+        "description": "Learn volleyball fundamentals and play team matches",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": []
+    },
     "Art Club": {
         "description": "Explore drawing, painting, and other visual art techniques",
         "schedule": "Mondays, 3:30 PM - 5:00 PM",
